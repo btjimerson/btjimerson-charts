@@ -25,5 +25,5 @@ helm install --values values.yaml my-ecommerce-demo btjimerson/ecommerce-demo
 To uninstall the chart:
 
 ```bash
-helm uninstall delete my-ecommerce-demo
+helm uninstall my-ecommerce-demo
 ```
