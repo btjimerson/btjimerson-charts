@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.frontend.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.frontend.name }}
+    service: {{ .Values.frontend.name }}
+spec:
+  ports:
+  - port: {{ .Values.frontend.servicePort }}
+    name: http
+  selector:
+    app: {{ .Values.frontend.name }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.frontend.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.frontend.name }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.frontend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.frontend.name }}
+    spec:
+      containers:
+      - name: {{ .Values.frontend.name }}
+        image: {{ .Values.frontend.containerImage }}
+        imagePullPolicy: {{ .Values.frontend.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.frontend.containerPort }}
+ 
