@@ -4,10 +4,7 @@ on:
     branches:
       - main
 permissions:
-  id-token: write
-  contents: read
-  issues: write
-  pull-requests: write
+  releases: write
 jobs:
   release:
     runs-on: ubuntu-latest
