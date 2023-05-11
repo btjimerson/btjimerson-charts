@@ -37,9 +37,9 @@ spec:
         ports:
         - containerPort: {{ .Values.orders.containerPort }}
         env:
-        {{ if .Values.orders.activeProfile }}
+        {{ if .Values.global.activeProfiles }}
         - name: SPRING_PROFILES_ACTIVE
-          value: {{ .Values.orders.activeProfile }}
+          value: {{ .Values.global.activeProfiles }}
         {{ end }}
         {{ if eq .Values.orders.activeProfile "yugabyte" }}
         - name: YB_URL

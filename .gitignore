@@ -1,7 +1,4 @@
 .DS_Store
-pid.file
-nohup.out
-__*__
 
 ### STS ###
 .apt_generated

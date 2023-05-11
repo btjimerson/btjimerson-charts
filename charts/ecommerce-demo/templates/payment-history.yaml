@@ -38,9 +38,9 @@ spec:
         ports:
         - containerPort: {{ .Values.paymentHistory.containerPort }}
         env:
-        {{ if .Values.paymentHistory.activeProfile }}
+        {{ if .Values.global.activeProfiles }}
         - name: SPRING_PROFILES_ACTIVE
-          value: {{ .Values.paymentHistory.activeProfile }}
+          value: {{ .Values.global.activeProfiles }}
         {{ end }}
         {{ if eq .Values.paymentHistory.activeProfile "yugabyte" }}
         - name: YB_URL

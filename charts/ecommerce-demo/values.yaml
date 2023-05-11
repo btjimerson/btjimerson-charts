@@ -1,4 +1,6 @@
 # Default values for ecommerce-demo-chart.
+global:
+  activeProfiles: yugabyte
 frontendlb:
   enabled: true
 frontendgw:
@@ -12,7 +14,6 @@ catalog:
   replicas: 1
   imagePullPolicy: Always
   containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/catalog:0.1.0
-  activeProfile: yugabyte
   yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
   yugabyteUser: "yugabyte"
   yugabytePassword: "password"
@@ -32,7 +33,6 @@ orders:
   replicas: 1
   imagePullPolicy: Always
   containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/orders:0.1.0
-  activeProfile: yugabyte
   yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
   yugabyteUser: "yugabyte"
   yugabytePassword: "password"
@@ -51,7 +51,6 @@ paymentHistory:
   replicas: 1
   imagePullPolicy: Always
   containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/payment-history:0.1.0
-  activeProfile: yugabyte
   yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
   yugabyteUser: "yugabyte"
   yugabytePassword: "password"

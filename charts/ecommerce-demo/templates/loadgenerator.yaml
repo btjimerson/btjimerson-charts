@@ -38,7 +38,7 @@ spec:
         image: {{ .Values.loadGenerator.containerImage }}
         imagePullPolicy: {{ .Values.loadGenerator.imagePullPolicy }}
         env:
-        - name: FRONTEND_ADDR
+        - name: FRONTEND_ADDRESS
           value: {{ .Values.loadGenerator.frontendAddress | quote}}
         - name: USERS
           value: {{ .Values.loadGenerator.users | quote }}
