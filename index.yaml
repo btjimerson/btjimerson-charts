@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  ecommerce-demo-chart:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-05-11T16:11:34.423858552Z"
+    description: A Helm chart for the ecommerce demo app
+    digest: 4b5bec997706d6c1d6a8fd4144f7a1916d082badbc5dc487e6194077ec556567
+    name: ecommerce-demo-chart
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/ecommerce-demo-chart-0.1.0/ecommerce-demo-chart-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-05-11T16:11:34.423864952Z"
