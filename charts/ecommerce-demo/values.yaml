@@ -1,4 +1,4 @@
-# Default values for ecommerce-demo-chart.
+# Default values for ecommerce-demo.
 global:
   activeProfiles: yugabyte
 frontendlb:
