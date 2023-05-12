@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "yba-kubernetes-controller.name" -}}
+{{- define "yba-kubernetes-operator.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "yba-kubernetes-controller.fullname" -}}
+{{- define "yba-kubernetes-operator.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "yba-kubernetes-controller.chart" -}}
+{{- define "yba-kubernetes-operator.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "yba-kubernetes-controller.labels" -}}
-helm.sh/chart: {{ include "yba-kubernetes-controller.chart" . }}
-{{ include "yba-kubernetes-controller.selectorLabels" . }}
+{{- define "yba-kubernetes-operator.labels" -}}
+helm.sh/chart: {{ include "yba-kubernetes-operator.chart" . }}
+{{ include "yba-kubernetes-operator.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "yba-kubernetes-controller.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "yba-kubernetes-controller.name" . }}
+{{- define "yba-kubernetes-operator.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "yba-kubernetes-operator.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "yba-kubernetes-controller.serviceAccountName" -}}
+{{- define "yba-kubernetes-operator.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "yba-kubernetes-controller.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "yba-kubernetes-operator.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: yba-kubernetes-controller
+name: yba-kubernetes-operator
 description: A Helm chart for the YugabyteDB Anywhere Kubernetes controller
 type: application
 version: 0.1.0
