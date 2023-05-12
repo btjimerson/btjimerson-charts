@@ -22,4 +22,17 @@ entries:
     urls:
     - https://github.com/btjimerson/btjimerson-charts/releases/download/yba-kubernetes-controller-0.1.0/yba-kubernetes-controller-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-12T14:34:36.349124373Z"
+  yba-kubernetes-operator:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-05-12T14:51:40.60400347Z"
+    description: Helm chart for the YugabyteDB Anywhere Kubernetes operator
+    digest: ac85f1649d75c511338dd7579ebec9f217857edbe502c3c78f93653a0dab9c98
+    name: yba-kubernetes-operator
+    sources:
+    - https://github.com/btjimerson/yba-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/yba-kubernetes-operator-0.1.0/yba-kubernetes-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-05-12T14:51:40.60400897Z"
