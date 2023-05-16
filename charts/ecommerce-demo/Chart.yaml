@@ -1,8 +1,0 @@
-apiVersion: v2
-name: ecommerce-demo
-description: Helm chart for the ecommerce demo app
-type: application
-version: 0.1.0
-appVersion: "0.1.0"
-sources:
-- https://github.com/btjimerson/ecommerce-demo

@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "ecommerce-demo-chart.name" -}}
+{{- define "ashtabula-chart.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "ecommerce-demo-chart.fullname" -}}
+{{- define "ashtabula-chart.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "ecommerce-demo-chart.chart" -}}
+{{- define "ashtabula-chart.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "ecommerce-demo-chart.labels" -}}
-helm.sh/chart: {{ include "ecommerce-demo-chart.chart" . }}
-{{ include "ecommerce-demo-chart.selectorLabels" . }}
+{{- define "ashtabula-chart.labels" -}}
+helm.sh/chart: {{ include "ashtabula-chart.chart" . }}
+{{ include "ashtabula-chart.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "ecommerce-demo-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "ecommerce-demo-chart.name" . }}
+{{- define "ashtabula-chart.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ashtabula-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "ecommerce-demo-chart.serviceAccountName" -}}
+{{- define "ashtabula-chart.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "ecommerce-demo-chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ashtabula-chart.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

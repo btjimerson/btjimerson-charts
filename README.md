@@ -11,9 +11,9 @@ helm repo update
 
 If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages.  You can then run `helm search repo btjimerson` to see the charts.
 
-## Install e-commerce demo
+## Install ashtabula demo app
 
-To install the ecommerce-demo chart, first create a file called values.yaml and override certain values. At a minimum, these values should be set:
+To install the ashtabula chart, first create a file called values.yaml and override certain values. At a minimum, these values should be set:
 
  * `global.activeProfile`
  * `payments.stripeApiKey`
@@ -21,13 +21,13 @@ To install the ecommerce-demo chart, first create a file called values.yaml and 
  Then you can install the chart:
 
 ```bash
-helm install --values values.yaml my-ecommerce-demo btjimerson/ecommerce-demo
+helm install --values values.yaml my-ashtabula btjimerson/ashtabula
 ```
 
 To uninstall the chart:
 
 ```bash
-helm uninstall my-ecommerce-demo
+helm uninstall my-ashtabula
 ```
 
 ## Install YBA Kubernetes operator

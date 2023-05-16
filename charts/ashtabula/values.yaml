@@ -1,4 +1,4 @@
-# Default values for ecommerce-demo.
+# Default values for ashtabula demo.
 global:
   activeProfiles: yugabyte
 frontendlb:
