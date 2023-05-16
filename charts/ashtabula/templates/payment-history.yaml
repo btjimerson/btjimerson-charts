@@ -42,7 +42,7 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: {{ .Values.global.activeProfiles }}
         {{ end }}
-        {{ if eq .Values.paymentHistory.activeProfile "yugabyte" }}
+        {{ if contains "yugabyte" .Values.catalog.activeProfile }}
         - name: YB_URL
           value: {{ .Values.paymentHistory.yugabyteUrl | quote }}
         - name: YB_USER
