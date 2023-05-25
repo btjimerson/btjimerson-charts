@@ -41,7 +41,7 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: {{ .Values.global.activeProfiles }}
         {{ end }}
-        {{ if contains "yugabyte" .Values.catalog.activeProfile }}
+        {{ if contains "yugabyte" .Values.global.activeProfiles }}
         - name: YB_URL
           value: {{ .Values.orders.yugabyteUrl | quote }}
         - name: YB_USER
