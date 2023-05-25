@@ -11,9 +11,9 @@ helm repo update
 
 If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages.  You can then run `helm search repo btjimerson` to see the charts.
 
-## Install ashtabula demo app
+## Install Ashtabula demo app
 
-To install the ashtabula chart, first create a file called values.yaml and override certain values. At a minimum, these values should be set:
+To install the Ashtabula chart, first create a file called values.yaml and override certain values. At a minimum, these values should be set:
 
  * `global.activeProfile`
  * `payments.stripeApiKey`
