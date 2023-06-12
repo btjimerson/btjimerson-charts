@@ -34,7 +34,11 @@ spec:
                 type: integer
               regionLongitude:
                 type: integer
-              zone:
+              zone1:
+                type: string
+              zone2:
+                type: string
+              zone3:
                 type: string
             type: object
           status:

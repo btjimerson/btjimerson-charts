@@ -21,12 +21,14 @@ spec:
             properties:
               name:
                 type: string
+              numNodes:
+                type: integer
+              replicationFactor:
+                type: integer
               softwareVersion:
                 type: string
               storageClass:
                 type: string
-              replicationFactor:
-                type: integer
               volumeSize:
                 type: integer
               ycqlPassword:
