@@ -1,0 +1,29 @@
+apiVersion: v1
+entries:
+  ashtabula:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-06-12T17:37:00.181097124Z"
+    description: Helm chart for the ashtabula demo app
+    digest: 7886de28e7d76598a3a61a8211b08c61aaffd5918b5c53dbe1ac42b0643c8850
+    name: ashtabula
+    sources:
+    - https://github.com/btjimerson/ashtabula
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/ashtabula-0.1.0/ashtabula-0.1.0.tgz
+    version: 0.1.0
+  yba-kubernetes-operator:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2023-06-12T17:37:00.36976706Z"
+    description: Helm chart for the YugabyteDB Anywhere Kubernetes operator
+    digest: 6dea8a1407b1bcd9d307b42112b3738fa79c52f6dc5f1a8695857374ebfcc1f7
+    name: yba-kubernetes-operator
+    sources:
+    - https://github.com/btjimerson/yba-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/yba-kubernetes-operator-0.1.0/yba-kubernetes-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-06-12T17:37:00.36977106Z"
