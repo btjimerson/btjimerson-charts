@@ -1,0 +1,29 @@
+apiVersion: v1
+entries:
+  cloud-cart:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2024-04-11T15:56:20.005505882Z"
+    description: Helm chart for the cloud-cart demo app
+    digest: 921fe2e5b4b7a5d256a76d093f4173f4b6b77d004c9befd5145a87fd7535f7a8
+    name: cloud-cart
+    sources:
+    - https://github.com/btjimerson/cloud-cart
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/cloud-cart-0.2.0/cloud-cart-0.2.0.tgz
+    version: 0.2.0
+  yba-kubernetes-operator:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2024-04-11T15:56:20.146646597Z"
+    description: Helm chart for the YugabyteDB Anywhere Kubernetes operator
+    digest: 68585b9f35f8e3001ce097315af01c0a637cae0c2565f59fea3ccf05cd86327f
+    name: yba-kubernetes-operator
+    sources:
+    - https://github.com/btjimerson/yba-kubernetes-operator
+    type: application
+    urls:
+    - https://github.com/btjimerson/btjimerson-charts/releases/download/yba-kubernetes-operator-0.2.0/yba-kubernetes-operator-0.2.0.tgz
+    version: 0.2.0
+generated: "2024-04-11T15:56:20.146652538Z"
