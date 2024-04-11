@@ -1,0 +1,19 @@
+{{ if .Values.frontendlb.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.frontend.name }}-lb
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.frontend.name }}
+    service: {{ .Values.frontend.name }}-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: {{ .Values.frontend.containerPort }}
+    name: http
+  selector:
+    app: {{ .Values.frontend.name }}
+{{ end }}

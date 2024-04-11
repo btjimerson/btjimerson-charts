@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.catalog.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.catalog.name }}
+    service: {{ .Values.catalog.name }}
+spec:
+  ports:
+  - port: {{ .Values.catalog.servicePort }}
+    name: http
+  selector:
+    app: {{ .Values.catalog.name }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.catalog.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.catalog.name }}
+spec:
+  replicas: {{ .Values.catalog.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.catalog.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.catalog.name }}
+    spec:
+      containers:
+      - name: {{ .Values.catalog.name }}
+        image: {{ .Values.catalog.containerImage }}
+        imagePullPolicy: {{ .Values.catalog.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.catalog.containerPort }}
+        env:
+        {{ if .Values.global.activeProfiles }}
+        - name: SPRING_PROFILES_ACTIVE
+          value: {{ .Values.global.activeProfiles }}
+        {{ end }}
+        {{ if contains "yugabyte" .Values.global.activeProfiles }}
+        - name: YB_URL
+          value: {{ .Values.catalog.yugabyteUrl | quote }}
+        - name: YB_USER
+          value: {{ .Values.catalog.yugabyteUser | quote }}
+        - name: YB_PASSWORD
+          value: {{ .Values.catalog.yugabytePassword | quote }}
+        {{ end }}

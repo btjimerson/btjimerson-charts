@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.rabbitmq.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.rabbitmq.name }}
+    service: {{ .Values.rabbitmq.name }}
+spec:
+  ports:
+  - port: {{ .Values.rabbitmq.servicePort }}
+    name: tcp-rabbit
+  selector:
+    app: {{ .Values.rabbitmq.name }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.rabbitmq.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.rabbitmq.name }}
+spec:
+  replicas: {{ .Values.rabbitmq.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.rabbitmq.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.rabbitmq.name }}
+    spec:
+      containers:
+      - name: {{ .Values.rabbitmq.name }}
+        image: {{ .Values.rabbitmq.containerImage }}
+        imagePullPolicy: {{ .Values.rabbitmq.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.rabbitmq.containerPort }}

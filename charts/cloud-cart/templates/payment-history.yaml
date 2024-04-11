@@ -1,0 +1,52 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.paymentHistory.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.paymentHistory.name }}
+    service: {{ .Values.paymentHistory.name }}
+spec:
+  ports:
+  - port: {{ .Values.paymentHistory.servicePort }}
+    name: http
+  selector:
+    app: {{ .Values.paymentHistory.name }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.paymentHistory.name }}
+  namespace: {{ .Values.namespace.name }}
+  labels:
+    app: {{ .Values.paymentHistory.name }}
+spec:
+  replicas: {{ .Values.paymentHistory.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.paymentHistory.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.paymentHistory.name }}
+    spec:
+      containers:
+      - name: {{ .Values.paymentHistory.name }}
+        image: {{ .Values.paymentHistory.containerImage }}
+        imagePullPolicy: {{ .Values.paymentHistory.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.paymentHistory.containerPort }}
+        env:
+        {{ if .Values.global.activeProfiles }}
+        - name: SPRING_PROFILES_ACTIVE
+          value: {{ .Values.global.activeProfiles }}
+        {{ end }}
+        {{ if contains "yugabyte" .Values.global.activeProfiles }}
+        - name: YB_URL
+          value: {{ .Values.paymentHistory.yugabyteUrl | quote }}
+        - name: YB_USER
+          value: {{ .Values.paymentHistory.yugabyteUser | quote }}
+        - name: YB_PASSWORD
+          value: {{ .Values.paymentHistory.yugabytePassword | quote }}
+        {{ end }}

@@ -1,0 +1,35 @@
+{{ if .Values.frontendgw.enabled }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ .Values.frontend.name }}-gw
+  namespace: {{ .Values.namespace.name }}
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - {{ .Values.frontend.gateway.hostname }}
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.frontend.name }}-vs
+  namespace: {{ .Values.namespace.name }}
+spec:
+  hosts:
+  - {{ .Values.frontend.gateway.hostname }}
+  gateways:
+  - {{ .Values.frontend.name }}-gw
+  http:
+  - route:
+    - destination:
+        host: {{ .Values.frontend.name }}
+        port:
+          number: {{ .Values.frontend.servicePort }}
+{{ end }}

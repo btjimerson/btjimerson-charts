@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "cloud-cart-chart.fullname" . }}-test-connection"
+  labels:
+    {{- include "cloud-cart-chart.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "cloud-cart-chart.fullname" . }}:{{ .Values.catalog.servicePort }}']
+  restartPolicy: Never

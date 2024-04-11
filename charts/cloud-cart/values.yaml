@@ -1,0 +1,71 @@
+# Default values for cloud-cart demo.
+global:
+  activeProfiles: yugabyte
+frontendlb:
+  enabled: true
+frontendgw:
+  enabled: false
+namespace:
+  create: true
+  name: shopping-cart
+  labelForIstio: false
+catalog:
+  name: catalog
+  replicas: 1
+  imagePullPolicy: Always
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/catalog:0.1.0
+  yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
+  yugabyteUser: "yugabyte"
+  yugabytePassword: "password"
+  containerPort: 8080
+  servicePort: 8080
+frontend:
+  name: frontend
+  replicas: 1
+  imagePullPolicy: Always
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/frontend:0.1.0
+  containerPort: 8080
+  servicePort: 8080
+  gateway:
+    hostname: myhost.default.com
+orders:
+  name: orders
+  replicas: 1
+  imagePullPolicy: Always
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/orders:0.1.0
+  yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
+  yugabyteUser: "yugabyte"
+  yugabytePassword: "password"
+  containerPort: 8080
+  servicePort: 8080
+payments:
+  name: payments
+  replicas: 1
+  imagePullPolicy: Always
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/payments:0.1.0
+  containerPort: 8080
+  servicePort: 8080
+  stripeApiKey: <my-key>
+paymentHistory:
+  name: payment-history
+  replicas: 1
+  imagePullPolicy: Always
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/payment-history:0.1.0
+  yugabyteUrl: "jdbc:yugabytedb://yb-tservers.yb-universes.svc.cluster.local:5433/yugabyte?sslmode=require"
+  yugabyteUser: "yugabyte"
+  yugabytePassword: "password"
+  containerPort: 8080
+  servicePort: 8080
+rabbitmq:
+  name: rabbitmq
+  containerImage: rabbitmq:3
+  replicas: 1
+  containerPort: 5672
+  servicePort: 5672
+loadGenerator:
+  name: loadgenerator
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/loadgenerator:0.1.0
+  replicas: 1
+  users: 10
+  frontendAddress: "frontend:8080"
+  

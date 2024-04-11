@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+      - name: {{ .Values.deployment.name }}
+        image: {{ .Values.deployment.containerImage }}
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+        env:
+        - name: YBA_HOSTNAME
+          value: {{ .Values.deployment.ybaHostname | quote }}
+        - name: YBA_PROVIDER_NAME
+          value: {{ .Values.deployment.ybaProviderName | quote }}
+        - name: YBA_PULL_SECRET_PATH
+          value: "/etc/yugabyte-pull-secret/yugabyte-pull-secret.yaml"
+        - name: YBA_ENVIRONMENT
+          value: {{ .Values.deployment.ybaEnvironment | quote }}
+        - name: YBA_NAMESPACE
+          value: {{ .Values.deployment.ybaRemoteNamespace | quote }}
+        - name: YBA_PULL_SECRET_NAME
+          value: {{ .Values.pullSecretConfigMap.pullSecretName | quote }}
+        - name: YBA_SERVICE_ACCOUNT
+          value: {{ .Values.deployment.ybaServiceAccount | quote }}
+        volumeMounts:
+        - mountPath: /etc/yugabyte-pull-secret
+          name: yugabyte-pull-secret
+      volumes:
+      - name: yugabyte-pull-secret
+        configMap:
+          name: {{ .Values.pullSecretConfigMap.name | quote }}

@@ -1,0 +1,29 @@
+global:
+  createNamespace: true
+clusterRole:
+  name: yba-operator-role
+clusterRoleBinding:
+  name: yba-operator-role-binding
+deployment:
+  name: yba-operator
+  containerImage: gcr.io/yb-americas-presales/github.com/btjimerson/yba-kubernetes-operator:0.1.0
+  containerPort: 80
+  imagePullPolicy: Always
+  pullSecretConfigMapName: yugabyte-pull-secret-config-map
+  ybaEnvironment: DEMO
+  ybaHostname: yugaware-yugaware-ui.yugabyte.svc.cluster.local
+  ybaProviderName: remote
+  ybaRemoteNamespace: yb-nodes
+  ybaServiceAccount: yugabyte-platform-universe-management
+kubeconfigConfigMap:
+  name: kubeconfig-config-map
+  kubeconfig: |
+   <set your kubeconfig yaml>
+namespace:
+  name: yba-operator
+pullSecretConfigMap:
+  name: pull-secret-config-map
+  pullSecretName: yugabyte-k8s-pull-secret
+  pullSecret: "Add your base-64 encoded pull secret"
+serviceAccount:
+  name: yba-operator

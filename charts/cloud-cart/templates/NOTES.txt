@@ -1,0 +1,9 @@
+Get the application URL by running these commands:
+{{- if .Values.frontendgw.enabled }}
+  export GATEWAY_SERVICE_IP=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$GATEWAY_SERVICE_IP:80
+{{- end }}
+{{- if .Values.frontendlb.enabled }}
+  export LB_SERVICE_IP=$(kubectl get svc --namespace {{ .Values.namespace.name }} {{ .Values.frontend.name }}-lb -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$LB_SERVICE_IP:80
+{{- end }}
